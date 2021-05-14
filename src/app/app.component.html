@@ -1,0 +1,32 @@
+  <h1>{{title}}</h1>
+  <br>
+  <h2>Create New Task</h2>
+  <form (submit)='onSubmit()'>
+    <label>Task Title: <input type="text" name="newTask.title" [(ngModel)]='newTask.title'></label>
+    <label>Task Description: <input type="text" name="newTask.description" [(ngModel)]='newTask.description'></label>
+    <input type="submit" value="Create">
+  </form>
+  <br>
+  <button (click)='onButtonClick()'>Get All Tasks:</button>
+  <br>
+  <ul>
+    <li *ngFor='let task of tasks; let index = index' (click)='onIdClick(index)'>{{task.title}}<button (click)="onDeleteClick(task)">Delete</button></li>
+    
+  </ul>
+  <br>
+  <div >
+    <h2>{{task.title}}</h2>
+    <h3>{{task.description}}</h3>
+    <button (click)="onEditClick()">Edit</button>
+    <br>
+    <div *ngIf='editForm == true'>
+      <form (submit)='onEditSubmit()' >
+        <label>Task Title: <input type="text" name='updateTask.title' [(ngModel)]='updateTask.title'></label>
+        <label>Task Description: <input type="text" name='updateTask.description' [(ngModel)]='updateTask.description'></label>
+        <input type="submit" value="Update">
+      </form>
+    </div>
+  </div>
+  
+
+<router-outlet></router-outlet>
